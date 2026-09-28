@@ -1,3 +1,3 @@
 export default function App () {
-  <h1>Untitled UI</h1>
+  return <h1>Untitled UI</h1>
 }
