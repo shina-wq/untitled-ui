@@ -12,7 +12,7 @@ import {
   SearchLg,
   Settings01,
 } from "@untitledui/icons"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import {
   Sidebar,
@@ -31,6 +31,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar"
 import { Logo } from "@/components/logo"
+import avatar from "@/assets/avatar.jpg"
 
 const mainNav = [
   { title: "Home", icon: HomeLine },
@@ -55,8 +56,8 @@ export function AppSidebar() {
 
   return (
     <Sidebar variant="floating">
-      <SidebarHeader className="gap-4">
-        <Logo className="h-8 w-auto text-text-primary" />
+      <SidebarHeader className="gap-3">
+        <Logo className="h-8 w-auto self-start text-text-primary mt-1.5" />
         <div className="relative">
           <SearchLg className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-fg-quaternary" />
           <SidebarInput placeholder="Search" className="pl-9 pr-12" />
@@ -144,6 +145,7 @@ export function AppSidebar() {
             <SidebarMenuButton size="lg" className="border border-border-secondary shadow-xs">
               <div className="relative">
                 <Avatar className="size-8">
+                  <AvatarImage src={avatar} alt="Olivia Rhye" />
                   <AvatarFallback>OR</AvatarFallback>
                 </Avatar>
                 <span className="absolute bottom-0 right-0 size-2 rounded-full bg-fg-success-secondary ring-2 ring-bg-primary" />
