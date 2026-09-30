@@ -30,6 +30,7 @@ import {
   SidebarMenuSubItem,
   SidebarSeparator,
 } from "@/components/ui/sidebar"
+import { Logo } from "@/components/logo"
 
 const mainNav = [
   { title: "Home", icon: HomeLine },
@@ -49,22 +50,13 @@ const secondaryNav = [
   { title: "Settings", icon: Settings01 },
 ]
 
-export function Logo() {
-  return (
-    <div className="flex items-center gap-2">
-      <div className="size-6 rounded-md bg-brand-600" />
-      <span className="text-sm font-semibold text-text-primary">Untitled UI</span>
-    </div>
-  )
-}
-
 export function AppSidebar() {
   const [foldersOpen, setFoldersOpen] = useState(true)
 
   return (
     <Sidebar variant="floating">
       <SidebarHeader className="gap-4">
-        <Logo />
+        <Logo className="h-8 w-auto text-text-primary" />
         <div className="relative">
           <SearchLg className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-fg-quaternary" />
           <SidebarInput placeholder="Search" className="pl-9 pr-12" />
