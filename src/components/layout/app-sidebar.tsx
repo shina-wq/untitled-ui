@@ -93,7 +93,7 @@ export function AppSidebar() {
                     {folders.map(({ title, count }) => (
                       <SidebarMenuSubItem key={title}>
                         <SidebarMenuSubButton render={<a href="#" />}>{title}</SidebarMenuSubButton>
-                        <SidebarMenuBadge className="rounded-full border border-border-secondary">
+                        <SidebarMenuBadge className="top-1 rounded-full border border-border-secondary">
                           {count}
                         </SidebarMenuBadge>
                       </SidebarMenuSubItem>
