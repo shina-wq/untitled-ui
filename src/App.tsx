@@ -1,6 +1,7 @@
 import { AppSidebar } from "@/components/layout/app-sidebar"
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { Logo } from "@/components/logo"
+import { PageHeader } from "./components/layout/page-header"
 
 export default function App() {
   return (
@@ -12,7 +13,7 @@ export default function App() {
           <SidebarTrigger />
         </header>
         <main className="p-4 md:p-8">
-          <h1 className="text-lg font-semibold text-text-primary">Organization overview</h1>
+          <PageHeader title="Organization Overview" />
         </main>
       </SidebarInset>
     </SidebarProvider>
