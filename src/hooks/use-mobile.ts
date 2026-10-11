@@ -1,6 +1,7 @@
 import { useSyncExternalStore } from "react"
 
-const MOBILE_BREAKPOINT = 768
+// Matches Tailwind's lg breakpoint: below it the sidebar becomes a sheet.
+const MOBILE_BREAKPOINT = 1024
 const query = `(max-width: ${MOBILE_BREAKPOINT - 1}px)`
 
 function subscribe(onChange: () => void) {
