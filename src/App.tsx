@@ -1,4 +1,5 @@
 import { AverageRatingCard } from "@/components/dashboard/average-rating-card"
+import { VendorMovements } from "@/components/dashboard/vendor-movements"
 import { VendorBreakdownCard } from "@/components/dashboard/vendor-breakdown-card"
 import { AppSidebar } from "@/components/layout/app-sidebar"
 import { MobileHeader } from "@/components/layout/mobile-header"
@@ -18,6 +19,7 @@ export default function App() {
             <VendorBreakdownCard className="lg:w-90 lg:shrink-0" />
             <AverageRatingCard className="min-w-0 lg:flex-1" />
           </section>
+          <VendorMovements />
         </div>
       </SidebarInset>
       <ThemeToggle className="fixed right-4 bottom-4 z-50" />
