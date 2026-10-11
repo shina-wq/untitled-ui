@@ -3,13 +3,30 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* Design tokens: raw values. Utilities are generated from these. */
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 
-  /* Brand palette (Untitled UI purple) */
+  /* Primitive palette, using the exact hex values from the Untitled UI Figma variables.
+     Tailwind's default (oklch) palette is cleared so only these colours can be used. */
+  --color-*: initial;
+  --color-white: #fff;
+  --color-black: #000;
+
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0a0a0a;
+
   --color-brand-50: #f9f5ff;
   --color-brand-100: #f4ebff;
   --color-brand-200: #e9d7fe;
@@ -22,7 +39,76 @@
   --color-brand-900: #42307d;
   --color-brand-950: #2c1c5f;
 
-  /* Typography. text-sm, text-base and text-lg already match Tailwind defaults. */
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-300: #fca5a5;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+  --color-red-950: #450a0a;
+
+  --color-yellow-50: #fefce8;
+  --color-yellow-100: #fef9c3;
+  --color-yellow-400: #facc15;
+  --color-yellow-500: #eab308;
+  --color-yellow-600: #ca8a04;
+  --color-yellow-950: #422006;
+
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-200: #bbf7d0;
+  --color-green-300: #86efac;
+  --color-green-400: #4ade80;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+  --color-green-800: #166534;
+  --color-green-950: #052e16;
+
+  --color-blue-50: #eff6ff;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-500: #3b82f6;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-950: #172554;
+
+  --color-indigo-50: #eef2ff;
+  --color-indigo-200: #c7d2fe;
+  --color-indigo-300: #a5b4fc;
+  --color-indigo-500: #6366f1;
+  --color-indigo-700: #4338ca;
+  --color-indigo-800: #3730a3;
+  --color-indigo-950: #1e1b4b;
+
+  --color-pink-50: #fdf2f8;
+  --color-pink-200: #fbcfe8;
+  --color-pink-300: #f9a8d4;
+  --color-pink-500: #ec4899;
+  --color-pink-700: #be185d;
+  --color-pink-800: #9d174d;
+  --color-pink-950: #500724;
+
+  --color-orange-50: #fff7ed;
+  --color-orange-200: #fed7aa;
+  --color-orange-300: #fdba74;
+  --color-orange-500: #f97316;
+  --color-orange-700: #c2410c;
+  --color-orange-800: #9a3412;
+  --color-orange-950: #431407;
+
+  --color-slate-50: #f8fafc;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-500: #64748b;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-950: #020617;
+
+  /* Typography. text-sm, text-lg and text-xl line heights already match Tailwind defaults. */
   --text-display-2xl: 4.5rem;
   --text-display-2xl--line-height: 5.625rem;
   --text-display-2xl--letter-spacing: -0.02em;
@@ -46,21 +132,17 @@
   --text-xs: 0.75rem;
   --text-xs--line-height: 1.125rem;
 
-  /* Shadows */
-  --shadow-xs: 0 1px 2px rgb(10 13 18 / 0.05);
-  --shadow-xs-skeuomorphic: 0 1px 2px rgb(10 13 18 / 0.05),
-    inset 0 0 0 1px rgb(10 13 18 / 0.18), inset 0 -2px 0 rgb(10 13 18 / 0.05);
-  --shadow-sm: 0 1px 3px rgb(10 13 18 / 0.1), 0 1px 2px -1px rgb(10 13 18 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(10 13 18 / 0.1),
-    0 2px 4px -2px rgb(10 13 18 / 0.06);
-  --shadow-lg: 0 12px 16px -4px rgb(10 13 18 / 0.08),
-    0 4px 6px -2px rgb(10 13 18 / 0.03), 0 2px 2px -1px rgb(10 13 18 / 0.04);
-  --shadow-xl: 0 20px 24px -4px rgb(10 13 18 / 0.08),
-    0 8px 8px -4px rgb(10 13 18 / 0.03), 0 3px 3px -1.5px rgb(10 13 18 / 0.04);
-  --shadow-2xl: 0 24px 48px -12px rgb(10 13 18 / 0.18),
-    0 4px 4px -2px rgb(10 13 18 / 0.04);
-  --shadow-3xl: 0 32px 64px -12px rgb(10 13 18 / 0.14),
-    0 5px 5px -2.5px rgb(10 13 18 / 0.04);
+  /* Shadows (Figma uses pure black at low alpha) */
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.05);
+  /* Figma draws the 1px border over the inner shadows, which hides the 1px inner ring and
+     half of the 2px bottom inset. CSS borders sit outside box-shadow, so this is the visible result. */
+  --shadow-xs-skeuomorphic: 0 1px 2px rgb(0 0 0 / 0.05), inset 0 -1px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 12px 16px -4px rgb(0 0 0 / 0.08), 0 4px 6px -2px rgb(0 0 0 / 0.03),
+    0 2px 2px -1px rgb(0 0 0 / 0.04);
+  --shadow-xl: 0 20px 24px -4px rgb(0 0 0 / 0.08), 0 8px 8px -4px rgb(0 0 0 / 0.03),
+    0 3px 3px -1.5px rgb(0 0 0 / 0.04);
 
   /* Radius (none and full already exist in Tailwind) */
   --radius-xxs: 0.125rem;
@@ -214,14 +296,56 @@
   --color-bg-success-primary: var(--bg-success-primary);
   --color-bg-success-secondary: var(--bg-success-secondary);
   --color-bg-success-solid: var(--bg-success-solid);
+
+  /* Untitled UI utility colours (badges, charts). Use: bg-utility-blue-50 text-utility-blue-700 */
+  --color-utility-neutral-50: var(--utility-neutral-50);
+  --color-utility-neutral-200: var(--utility-neutral-200);
+  --color-utility-neutral-500: var(--utility-neutral-500);
+  --color-utility-neutral-700: var(--utility-neutral-700);
+  --color-utility-brand-50: var(--utility-brand-50);
+  --color-utility-brand-200: var(--utility-brand-200);
+  --color-utility-brand-300: var(--utility-brand-300);
+  --color-utility-brand-400: var(--utility-brand-400);
+  --color-utility-brand-500: var(--utility-brand-500);
+  --color-utility-brand-600: var(--utility-brand-600);
+  --color-utility-brand-700: var(--utility-brand-700);
+  --color-utility-green-50: var(--utility-green-50);
+  --color-utility-green-200: var(--utility-green-200);
+  --color-utility-green-500: var(--utility-green-500);
+  --color-utility-green-700: var(--utility-green-700);
+  --color-utility-red-50: var(--utility-red-50);
+  --color-utility-red-200: var(--utility-red-200);
+  --color-utility-red-500: var(--utility-red-500);
+  --color-utility-red-700: var(--utility-red-700);
+  --color-utility-blue-50: var(--utility-blue-50);
+  --color-utility-blue-200: var(--utility-blue-200);
+  --color-utility-blue-500: var(--utility-blue-500);
+  --color-utility-blue-700: var(--utility-blue-700);
+  --color-utility-indigo-50: var(--utility-indigo-50);
+  --color-utility-indigo-200: var(--utility-indigo-200);
+  --color-utility-indigo-500: var(--utility-indigo-500);
+  --color-utility-indigo-700: var(--utility-indigo-700);
+  --color-utility-pink-50: var(--utility-pink-50);
+  --color-utility-pink-200: var(--utility-pink-200);
+  --color-utility-pink-500: var(--utility-pink-500);
+  --color-utility-pink-700: var(--utility-pink-700);
+  --color-utility-orange-50: var(--utility-orange-50);
+  --color-utility-orange-200: var(--utility-orange-200);
+  --color-utility-orange-500: var(--utility-orange-500);
+  --color-utility-orange-700: var(--utility-orange-700);
+  --color-utility-slate-50: var(--utility-slate-50);
+  --color-utility-slate-200: var(--utility-slate-200);
+  --color-utility-slate-500: var(--utility-slate-500);
+  --color-utility-slate-700: var(--utility-slate-700);
 }
 
 :root {
+  color-scheme: light;
   --radius: var(--radius-lg); /* shadcn compatibility */
 
   /* Text */
   --text-primary: var(--color-neutral-900);
-  --text-primary_on-brand: #fff;
+  --text-primary_on-brand: var(--color-white);
   --text-secondary: var(--color-neutral-700);
   --text-secondary_hover: var(--color-neutral-800);
   --text-secondary_on-brand: var(--color-brand-200);
@@ -230,7 +354,7 @@
   --text-tertiary_on-brand: var(--color-brand-200);
   --text-quaternary: var(--color-neutral-500);
   --text-quaternary_on-brand: var(--color-brand-300);
-  --text-white: #fff;
+  --text-white: var(--color-white);
   --text-placeholder: var(--color-neutral-500);
   --text-brand-primary: var(--color-brand-900);
   --text-brand-secondary: var(--color-brand-700);
@@ -244,7 +368,7 @@
   /* Border */
   --border-primary: var(--color-neutral-300);
   --border-secondary: var(--color-neutral-200);
-  --border-secondary_alt: #0000001a;
+  --border-secondary_alt: rgb(0 0 0 / 0.1);
   --border-tertiary: var(--color-neutral-100);
   --border-brand: var(--color-brand-500);
   --border-brand_alt: var(--color-brand-600);
@@ -259,7 +383,7 @@
   --fg-tertiary_hover: var(--color-neutral-700);
   --fg-quaternary: var(--color-neutral-400);
   --fg-quaternary_hover: var(--color-neutral-500);
-  --fg-white: #fff;
+  --fg-white: var(--color-white);
   --fg-brand-primary: var(--color-brand-600);
   --fg-brand-primary_alt: var(--color-brand-600);
   --fg-brand-secondary: var(--color-brand-500);
@@ -272,8 +396,8 @@
   --fg-success-secondary: var(--color-green-500);
 
   /* Background */
-  --bg-primary: #fff;
-  --bg-primary_alt: #fff;
+  --bg-primary: var(--color-white);
+  --bg-primary_alt: var(--color-white);
   --bg-primary_hover: var(--color-neutral-50);
   --bg-primary-solid: var(--color-neutral-950);
   --bg-secondary: var(--color-neutral-50);
@@ -300,6 +424,47 @@
   --bg-success-primary: var(--color-green-50);
   --bg-success-secondary: var(--color-green-100);
   --bg-success-solid: var(--color-green-600);
+
+  /* Utility */
+  --utility-neutral-50: var(--color-neutral-50);
+  --utility-neutral-200: var(--color-neutral-200);
+  --utility-neutral-500: var(--color-neutral-500);
+  --utility-neutral-700: var(--color-neutral-700);
+  --utility-brand-50: var(--color-brand-50);
+  --utility-brand-200: var(--color-brand-200);
+  --utility-brand-300: var(--color-brand-300);
+  --utility-brand-400: var(--color-brand-400);
+  --utility-brand-500: var(--color-brand-500);
+  --utility-brand-600: var(--color-brand-600);
+  --utility-brand-700: var(--color-brand-700);
+  --utility-green-50: var(--color-green-50);
+  --utility-green-200: var(--color-green-200);
+  --utility-green-500: var(--color-green-500);
+  --utility-green-700: var(--color-green-700);
+  --utility-red-50: var(--color-red-50);
+  --utility-red-200: var(--color-red-200);
+  --utility-red-500: var(--color-red-500);
+  --utility-red-700: var(--color-red-700);
+  --utility-blue-50: var(--color-blue-50);
+  --utility-blue-200: var(--color-blue-200);
+  --utility-blue-500: var(--color-blue-500);
+  --utility-blue-700: var(--color-blue-700);
+  --utility-indigo-50: var(--color-indigo-50);
+  --utility-indigo-200: var(--color-indigo-200);
+  --utility-indigo-500: var(--color-indigo-500);
+  --utility-indigo-700: var(--color-indigo-700);
+  --utility-pink-50: var(--color-pink-50);
+  --utility-pink-200: var(--color-pink-200);
+  --utility-pink-500: var(--color-pink-500);
+  --utility-pink-700: var(--color-pink-700);
+  --utility-orange-50: var(--color-orange-50);
+  --utility-orange-200: var(--color-orange-200);
+  --utility-orange-500: var(--color-orange-500);
+  --utility-orange-700: var(--color-orange-700);
+  --utility-slate-50: var(--color-slate-50);
+  --utility-slate-200: var(--color-slate-200);
+  --utility-slate-500: var(--color-slate-500);
+  --utility-slate-700: var(--color-slate-700);
 
   /* shadcn aliases: point to the semantic tokens above, so dark mode follows automatically */
   --background: var(--bg-primary);
@@ -329,15 +494,18 @@
   --sidebar-border: var(--border-secondary);
   --sidebar-ring: var(--border-brand);
 
-  /* TODO: verify chart colors against the screenshots */
-  --chart-1: var(--color-brand-600);
-  --chart-2: var(--color-brand-400);
-  --chart-3: var(--color-brand-300);
-  --chart-4: var(--color-brand-200);
-  --chart-5: var(--color-neutral-300);
+  /* Charts: vendor breakdown donut and rating lines, darkest to lightest. Verified against both themes. */
+  --chart-1: var(--utility-brand-600);
+  --chart-2: var(--utility-brand-500);
+  --chart-3: var(--utility-brand-400);
+  --chart-4: var(--utility-brand-300);
+  --chart-5: var(--utility-brand-200);
 }
 
+/* Values not listed here are the same in both themes. */
 .dark {
+  color-scheme: dark;
+
   /* Text */
   --text-primary: var(--color-neutral-50);
   --text-primary_on-brand: var(--color-neutral-50);
@@ -370,7 +538,7 @@
   --border-error_subtle: var(--color-red-500);
 
   /* Foreground */
-  --fg-primary: #fff;
+  --fg-primary: var(--color-white);
   --fg-secondary: var(--color-neutral-300);
   --fg-secondary_hover: var(--color-neutral-200);
   --fg-tertiary: var(--color-neutral-400);
@@ -412,6 +580,38 @@
   --bg-warning-secondary: var(--color-yellow-600);
   --bg-success-primary: var(--color-green-950);
   --bg-success-secondary: var(--color-green-600);
+
+  /* Utility: colour scales mirror around 500 (50 to 950, 200 to 800, 700 to 300); neutral is offset (50 to 900, 200 to 700) */
+  --utility-neutral-50: var(--color-neutral-900);
+  --utility-neutral-200: var(--color-neutral-700);
+  --utility-neutral-700: var(--color-neutral-300);
+  --utility-brand-50: var(--color-brand-950);
+  --utility-brand-200: var(--color-brand-800);
+  --utility-brand-300: var(--color-brand-700);
+  --utility-brand-400: var(--color-brand-600);
+  --utility-brand-600: var(--color-brand-400);
+  --utility-brand-700: var(--color-brand-300);
+  --utility-green-50: var(--color-green-950);
+  --utility-green-200: var(--color-green-800);
+  --utility-green-700: var(--color-green-300);
+  --utility-red-50: var(--color-red-950);
+  --utility-red-200: var(--color-red-800);
+  --utility-red-700: var(--color-red-300);
+  --utility-blue-50: var(--color-blue-950);
+  --utility-blue-200: var(--color-blue-800);
+  --utility-blue-700: var(--color-blue-300);
+  --utility-indigo-50: var(--color-indigo-950);
+  --utility-indigo-200: var(--color-indigo-800);
+  --utility-indigo-700: var(--color-indigo-300);
+  --utility-pink-50: var(--color-pink-950);
+  --utility-pink-200: var(--color-pink-800);
+  --utility-pink-700: var(--color-pink-300);
+  --utility-orange-50: var(--color-orange-950);
+  --utility-orange-200: var(--color-orange-800);
+  --utility-orange-700: var(--color-orange-300);
+  --utility-slate-50: var(--color-slate-950);
+  --utility-slate-200: var(--color-slate-800);
+  --utility-slate-700: var(--color-slate-300);
 }
 
 @layer base {

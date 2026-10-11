@@ -1,18 +1,21 @@
-import { useState } from "react"
 import {
   BarChartSquare02,
   ChevronSelectorVertical,
   ChevronUp,
   Folder,
   HomeLine,
-  LifeBuoy01,
-  LinkExternal01,
+  LayoutAlt01,
+  MessageChatCircle,
   PieChart03,
   Rows01,
-  SearchLg,
   Settings01,
+  Share04,
 } from "@untitledui/icons"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import avatar from "@/assets/avatar.jpg"
+import { Logo } from "@/components/logo"
+import { SearchInput } from "@/components/search-input"
+import { Avatar, AvatarFallback, AvatarImage, AvatarStatus } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import {
   Sidebar,
@@ -20,9 +23,7 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarHeader,
-  SidebarInput,
   SidebarMenu,
-  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
@@ -30,8 +31,6 @@ import {
   SidebarMenuSubItem,
   SidebarSeparator,
 } from "@/components/ui/sidebar"
-import { Logo } from "@/components/logo"
-import avatar from "@/assets/avatar.jpg"
 
 const mainNav = [
   { title: "Home", icon: HomeLine },
@@ -52,19 +51,11 @@ const secondaryNav = [
 ]
 
 export function AppSidebar() {
-  const [foldersOpen, setFoldersOpen] = useState(true)
-
   return (
     <Sidebar variant="floating">
-      <SidebarHeader className="gap-3">
-        <Logo className="h-8 w-auto self-start text-text-primary mt-1.5" />
-        <div className="relative">
-          <SearchLg className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-fg-quaternary" />
-          <SidebarInput placeholder="Search" className="pl-9 pr-12" />
-          <kbd className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 rounded border border-border-secondary px-1 text-xs text-text-quaternary">
-            ⌘K
-          </kbd>
-        </div>
+      <SidebarHeader>
+        <Logo className="h-6 w-auto self-start text-text-primary" />
+        <SearchInput />
       </SidebarHeader>
 
       <SidebarContent>
@@ -78,34 +69,34 @@ export function AppSidebar() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
+          </SidebarMenu>
+        </SidebarGroup>
 
-            <Collapsible open={foldersOpen} onOpenChange={setFoldersOpen}>
-              <SidebarMenuItem>
-                <CollapsibleTrigger render={<SidebarMenuButton />}>
-                  <Folder />
-                  Folders
-                  <ChevronUp
-                    className={`ml-auto transition-transform ${foldersOpen ? "" : "rotate-180"}`}
-                  />
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <SidebarMenuSub className="mx-0 border-l-0 px-0 pl-8">
-                    {folders.map(({ title, count }) => (
-                      <SidebarMenuSubItem key={title}>
-                        <SidebarMenuSubButton render={<a href="#" />}>{title}</SidebarMenuSubButton>
-                        <SidebarMenuBadge className="top-1 rounded-full border border-border-secondary">
-                          {count}
-                        </SidebarMenuBadge>
-                      </SidebarMenuSubItem>
-                    ))}
-                  </SidebarMenuSub>
-                </CollapsibleContent>
-              </SidebarMenuItem>
+        <SidebarSeparator />
+
+        <SidebarGroup>
+          <SidebarMenu>
+            <Collapsible defaultOpen render={<SidebarMenuItem className="py-0" />}>
+              <CollapsibleTrigger render={<SidebarMenuButton className="my-px" />}>
+                <Folder />
+                Folders
+                <ChevronUp className="ml-auto size-4 rotate-180 transition-transform group-data-panel-open/menu-button:rotate-0" />
+              </CollapsibleTrigger>
+              <CollapsibleContent render={<SidebarMenuSub />}>
+                {folders.map(({ title, count }) => (
+                  <SidebarMenuSubItem key={title}>
+                    <SidebarMenuSubButton render={<a href="#" />}>
+                      {title}
+                      <Badge className="ml-auto">{count}</Badge>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                ))}
+              </CollapsibleContent>
             </Collapsible>
           </SidebarMenu>
         </SidebarGroup>
 
-        <SidebarSeparator className="mx-0" />
+        <SidebarSeparator />
 
         <SidebarGroup>
           <SidebarMenu>
@@ -117,22 +108,20 @@ export function AppSidebar() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
-
             <SidebarMenuItem>
               <SidebarMenuButton render={<a href="#" />}>
-                <LifeBuoy01 />
+                <MessageChatCircle />
                 Support
+                <Badge variant="modern" color="green" dot className="ml-auto">
+                  Online
+                </Badge>
               </SidebarMenuButton>
-              <SidebarMenuBadge className="gap-1 rounded-md border border-border-secondary px-1.5 text-text-secondary">
-                <span className="size-1.5 rounded-full bg-fg-success-secondary" />
-                Online
-              </SidebarMenuBadge>
             </SidebarMenuItem>
-
             <SidebarMenuItem>
-              <SidebarMenuButton render={<a href="#" />}>
-                <LinkExternal01 className="order-last ml-auto" />
+              <SidebarMenuButton render={<a href="#" target="_blank" rel="noreferrer" />}>
+                <LayoutAlt01 />
                 Open in browser
+                <Share04 className="ml-auto size-4" />
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -140,25 +129,31 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" className="border border-border-secondary shadow-xs">
-              <div className="relative">
-                <Avatar className="size-8">
-                  <AvatarImage src={avatar} alt="Olivia Rhye" />
-                  <AvatarFallback>OR</AvatarFallback>
-                </Avatar>
-                <span className="absolute bottom-0 right-0 size-2 rounded-full bg-fg-success-secondary ring-2 ring-bg-primary" />
-              </div>
-              <div className="grid flex-1 text-left text-xs leading-tight">
-                <span className="truncate font-semibold text-text-secondary">Olivia Rhye</span>
-                <span className="truncate text-text-tertiary">olivia@untitledui.com</span>
-              </div>
-              <ChevronSelectorVertical className="ml-auto" />
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <AccountCard />
       </SidebarFooter>
     </Sidebar>
+  )
+}
+
+function AccountCard() {
+  return (
+    <div className="relative flex items-center gap-2 rounded-xl bg-bg-primary_alt p-3 ring-1 ring-border-secondary ring-inset">
+      <Avatar>
+        <AvatarImage src={avatar} alt="" />
+        <AvatarFallback>OR</AvatarFallback>
+        <AvatarStatus />
+      </Avatar>
+      <div className="min-w-0 text-sm">
+        <p className="truncate font-semibold text-text-primary">Olivia Rhye</p>
+        <p className="truncate text-text-tertiary">olivia@untitledui.com</p>
+      </div>
+      <button
+        type="button"
+        aria-label="Open account menu"
+        className="absolute top-[7px] right-[7px] rounded-sm p-1.5 text-fg-quaternary transition-colors outline-none hover:bg-bg-primary_hover hover:text-fg-quaternary_hover focus-visible:focus-ring"
+      >
+        <ChevronSelectorVertical className="size-4" />
+      </button>
+    </div>
   )
 }

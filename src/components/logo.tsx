@@ -147,9 +147,11 @@ export function Logomark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
+// The viewBox is cropped to the mark's visible square (the logomark draws its shadow outside it),
+// so the height you set is the mark size: h-6 renders at 24 x 104.25px, as in Figma.
 export function Logo(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 142 38" fill="none" role="img" aria-label="Untitled UI" {...props}>
+    <svg viewBox="3 2 139 32" overflow="visible" fill="none" role="img" aria-label="Untitled UI" {...props}>
       <Logomark width={38} height={38} />
       <g fill="currentColor">
         {WORDMARK.map((d) => (

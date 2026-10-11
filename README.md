@@ -1,32 +1,22 @@
-# React + TypeScript + Vite
+# Untitled UI Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A pixel-accurate React build of the Untitled UI "Organization overview" dashboard (desktop and mobile, light and dark), using static mock data.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+React 19, TypeScript, Vite, Tailwind CSS v4, shadcn (Base UI primitives), Recharts and `@untitledui/icons`.
 
-## React Compiler
+## Scripts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev      # start the dev server
+npm run build    # type-check and build
+npm run lint     # oxlint
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Structure
+
+- `src/index.css`: design tokens (Untitled UI semantic colours, type scale, shadows, radii) mapped to Tailwind utilities, with shadcn aliases
+- `src/components/ui`: shadcn primitives, restyled to Untitled UI
+- `src/components/layout`: app shell (sidebar, page header)
