@@ -1,3 +1,4 @@
+import { AverageRatingCard } from "@/components/dashboard/average-rating-card"
 import { VendorBreakdownCard } from "@/components/dashboard/vendor-breakdown-card"
 import { AppSidebar } from "@/components/layout/app-sidebar"
 import { MobileHeader } from "@/components/layout/mobile-header"
@@ -15,6 +16,7 @@ export default function App() {
           <PageHeader title="Organization overview" />
           <section className="flex flex-col gap-6 lg:flex-row">
             <VendorBreakdownCard className="lg:w-90 lg:shrink-0" />
+            <AverageRatingCard className="min-w-0 lg:flex-1" />
           </section>
         </div>
       </SidebarInset>
