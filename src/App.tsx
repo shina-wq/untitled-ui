@@ -1,3 +1,4 @@
+import { VendorBreakdownCard } from "@/components/dashboard/vendor-breakdown-card"
 import { AppSidebar } from "@/components/layout/app-sidebar"
 import { MobileHeader } from "@/components/layout/mobile-header"
 import { PageHeader } from "@/components/layout/page-header"
@@ -12,6 +13,9 @@ export default function App() {
         <MobileHeader />
         <div className="flex flex-col gap-8 px-4 pt-8 pb-12 lg:px-8">
           <PageHeader title="Organization overview" />
+          <section className="flex flex-col gap-6 lg:flex-row">
+            <VendorBreakdownCard className="lg:w-90 lg:shrink-0" />
+          </section>
         </div>
       </SidebarInset>
       <ThemeToggle className="fixed right-4 bottom-4 z-50" />
