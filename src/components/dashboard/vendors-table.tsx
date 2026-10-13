@@ -29,7 +29,8 @@ export function VendorsTable() {
     // Borders are drawn by an overlay so they take no space, matching Figma's inside strokes:
     // a rounded hairline on desktop, a top border on mobile where the table is full-bleed.
     <div className="relative overflow-hidden bg-bg-primary shadow-xs after:pointer-events-none after:absolute after:inset-0 max-lg:-mx-4 max-lg:after:border-t max-lg:after:border-border-secondary lg:rounded-xl lg:after:rounded-xl lg:after:ring-1 lg:after:ring-border-secondary lg:after:ring-inset">
-      <Table className="table-fixed">
+      {/* Never narrower than the 1440px design, where vendor names fit; smaller desktops scroll the table sideways. */}
+      <Table className="table-fixed lg:min-w-270">
         <TableHeader>
           <TableRow>
             <TableHead className="max-lg:pl-4">
